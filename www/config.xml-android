@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <widget
-    id="org.TADL.TADLMobile"
-    version="3.1.16"
-    versionCode="3116"
+    id="org.tadl.kcl"
+    version="3.0.01"
+    versionCode="3001"
     xmlns="http://www.w3.org/ns/widgets"
     xmlns:cdv="http://cordova.apache.org/ns/1.0"
     xmlns:gap="http://phonegap.com/ns/1.0" >
 
-    <name>TADL</name>
+    <name>KCL</name>
 
     <description>
-        Traverse Area District Library Mobile
+        Kalkaska County Library Mobile
     </description>
 
     <author email="tech@tadl.org" href="http://www.tadl.org/">
@@ -21,7 +21,6 @@
     <gap:platform name="android" />
 
     <content src="index.html" />
-    <access origin="*" />
 
     <preference name="webviewbounce" value="false"/>
     <preference name="UIWebViewBounce" value="true"/>
@@ -29,10 +28,10 @@
     <preference name="android-minSdkVersion" value="16"/>
     <preference name="BackupWebStorage" value="none"/>
     <preference name="permissions" value="none"/>
-    <preference name="phonegap-version" value="cli-5.4.1"/>
+    <preference name="phonegap-version" value="cli-6.3.0"/>
     <preference name="orientation" value="portrait"/>
     <preference name="target-device" value="universal"/>
-    <preference name="fullscreen" value="true"/>
+    <preference name="fullscreen" value="false"/>
     <preference name="prerendered-icon" value="true"/>
     <preference name="stay-in-webview" value="false"/>
     <preference name="ios-statusbarstyle" value="black-opaque"/>
@@ -42,17 +41,21 @@
     <preference name="auto-hide-splash-screen" value="true" />
     <preference name="disable-cursor" value="false" />
 
-
     <feature name="StatusBar">
         <param name="ios-package" value="CDVStatusBar" onload="true"/>
     </feature>
 
     <gap:config-file platform="ios" parent="CFBundleVersion">
-        <string>3116</string>
+        <string>3001</string>
     </gap:config-file>
 
     <gap:plugin name="com.ionic.keyboard" />
     <gap:plugin name="org.apache.cordova.inappbrowser" />
+    <gap:plugin name="com.indigoway.cordova.whitelist.whitelistplugin" source="pgb"/>
+
+    <allow-navigation href="*" />
+    <allow-intent href="*" />
+    <access origin="*" />
 
     <!-- ICONS -->
 
@@ -109,6 +112,5 @@
     <gap:splash src="res/splash/android/mdpi.png" gap:platform="android" gap:qualifier="mdpi" />
     <gap:splash src="res/splash/android/hdpi.png" gap:platform="android" gap:qualifier="hdpi" />
     <gap:splash src="res/splash/android/xhdpi.png" gap:platform="android" gap:qualifier="xhdpi" />
-
 
 </widget>

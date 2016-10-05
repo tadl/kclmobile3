@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <widget
-    id="org.TADL.TADLMobile"
-    version="3.1.19"
-    versionCode="3119"
+    id="org.tadl.kcl"
+    version="3.0.01"
+    versionCode="3001"
     xmlns="http://www.w3.org/ns/widgets"
     xmlns:cdv="http://cordova.apache.org/ns/1.0"
     xmlns:gap="http://phonegap.com/ns/1.0" >
 
-    <name>TADL</name>
+    <name>KCL</name>
 
     <description>
-        Traverse Area District Library Mobile
+        Kalkaska County Library Mobile
     </description>
 
     <author email="tech@tadl.org" href="http://www.tadl.org/">
@@ -46,7 +46,7 @@
     </feature>
 
     <gap:config-file platform="ios" parent="CFBundleVersion">
-        <string>3119</string>
+        <string>3001</string>
     </gap:config-file>
 
     <gap:plugin name="com.ionic.keyboard" />
@@ -112,6 +112,5 @@
     <gap:splash src="res/splash/android/mdpi.png" gap:platform="android" gap:qualifier="mdpi" />
     <gap:splash src="res/splash/android/hdpi.png" gap:platform="android" gap:qualifier="hdpi" />
     <gap:splash src="res/splash/android/xhdpi.png" gap:platform="android" gap:qualifier="xhdpi" />
-
 
 </widget>

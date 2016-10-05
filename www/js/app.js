@@ -1,7 +1,7 @@
 // Set up all URLs as vars
-var ilsCatcherBase = 'https://apiv2.catalog.tadl.org/';
+var ilsCatcherBase = 'https://apiv2-kcl.catalog.tadl.org/';
 var ilsSearchBasic = ilsCatcherBase + 'search/basic';
-var ilsItemDetails = 'https://catalog.tadl.org/main/details.json';
+var ilsItemDetails = 'https://catalog.kalkaskalibrary.org/main/details.json';
 var ilsAccountHolds = ilsCatcherBase + 'account/holds';
 var ilsAccountCheckouts = ilsCatcherBase + 'account/checkouts';
 var ilsAccountRenew = ilsCatcherBase + 'account/renew_items';
@@ -11,11 +11,10 @@ var ilsAccountRefresh = ilsCatcherBase + 'account/login_refresh';
 var ilsAccountToken = ilsCatcherBase + 'account/check_token';
 var ilsAccountHoldsPlace = ilsCatcherBase + 'account/place_holds';
 var ilsPasswordReset = ilsCatcherBase + 'account/password_reset';
-var webLocations = 'https://www.tadl.org/sites/default/files/json/parsed-hours.json';
+var webLocations = ilsCatcherBase + 'web/locations';
 var webEvents = ilsCatcherBase + 'web/events';
 var webNews = ilsCatcherBase + 'web/news';
-var webNode = 'https://www.tadl.org/export/node/json/';
-var featuredItems = 'https://www.tadl.org/mobile/export/items/json/featured?mobi_bypass=1';
+var webEvent = 'https://www.kalkaskalibrary.org/wp-json/posts/';
 
 var app = angular.module('egmobile', ['ionic', 'ngFitText'])
 
@@ -218,11 +217,12 @@ app.controller('SearchCtrl', function($scope, $rootScope, $http, $location, $sta
             timeout: 15000,
             params: search_params
         }).success(function(data) {
+            /*
             for (index = 0; index < data.results.length; ++index) {
                 if (data.results[index].availability.length) {
                     data.results[index].availability = data.results[index].availability.toString();
                 }
-            }
+            } */
             $scope.page = data.page
             $scope.more_results = (data.more_results == "true");
             $scope.new_results = data.results
@@ -232,7 +232,8 @@ app.controller('SearchCtrl', function($scope, $rootScope, $http, $location, $sta
                 $scope.$broadcast('scroll.infiniteScrollComplete');
             } else {
                 $scope.results = $scope.new_results;
-                cordova.plugins.Keyboard.close();
+                // uncomment this for android app TODO
+                //cordova.plugins.Keyboard.close();
                 $scope.page++;
             }
             $rootScope.hide_loading();
@@ -295,7 +296,7 @@ app.controller('SearchCtrl', function($scope, $rootScope, $http, $location, $sta
     $scope.loc = $stateParams.loc;
     $scope.qtype = $stateParams.qtype;
 */
-    if (($scope.format != 'all') || ($scope.sort != 'relevance') || ($scope.loc != '22') || ($scope.availability != 'off') || ($scope.qtype != 'keyword')) {
+    if (($scope.format != 'all') || ($scope.sort != 'relevance') || ($scope.availability != 'off') || ($scope.qtype != 'keyword')) {
         $scope.advanced_search = true;
     }
 
@@ -431,7 +432,8 @@ app.controller('HoldsCtrl', function($scope, $rootScope, $http, $ionicLoading, $
         $scope.changing_hold = hold_id;
     }
 
-    $scope.locValue = 23;
+    // this probably needs to be something TODO
+    //$scope.locValue = 23;
 
     $scope.submit_change = function(hold_id, loc_id, hold_state, hold_num) {
         var token = localStorage.getItem('token');
@@ -443,7 +445,7 @@ app.controller('HoldsCtrl', function($scope, $rootScope, $http, $ionicLoading, $
         $rootScope.show_loading();
         $http({
             method: 'GET',
-            url: 'https://catalog.tadl.org/main/update_hold_pickup.json',
+            url: 'https://catalog.kalkaskalibrary.org/main/update_hold_pickup.json',
             params: {"token": token, "hold_id": hold_id, "new_pickup": loc_id, "hold_state": holdstate},
             timeout: 15000,
         }).success(function(data) {
@@ -568,7 +570,7 @@ app.controller('CheckoutCtrl', function($scope, $rootScope, $http, $ionicPopup, 
         var token = localStorage.getItem('token');
         $http({
             method: 'GET',
-            url: 'https://catalog.tadl.org/main/renew_checkouts.json',
+            url: 'https://catalog.kalkaskalibrary.org/main/renew_checkouts.json',
             params: {"token": token, "checkout_ids": checkout_id, "record_ids": record_id},
             timeout: 15000,
         }).success(function(data) {

@@ -10,18 +10,6 @@
 </div>
 <div id="search_options" ng-show="advanced_search == true">
     <label class="item item-input item-select">
-        <div class="input-label">Location</div>
-        <select ng-model="loc" ng-init="loc = loc || '22'">
-            <option value="22" selected>All</option>
-            <option value="23">Woodmere</option>
-            <option value="25">Kingsley</option>
-            <option value="24">Interlochen</option>
-            <option value="26">Peninsula</option>
-            <option value="28">East Bay</option>
-            <option value="27">Fife Lake</option>
-        </select> 
-    </label>
-    <label class="item item-input item-select">
         <div class="input-label">Search Type</div>
         <select ng-model="qtype" ng-init="qtype = qtype || 'keyword'">
             <option value="keyword" selected>Keyword</option>
@@ -61,12 +49,12 @@
     <ion-item collection-repeat="result in results" item-width="100%" item-height="200">
         <div class="row">
             <div class="col col-20">
-                <img class="cover_search_results" ng-src="https://catalog.tadl.org/opac/extras/ac/jacket/medium/r/{{result.record_id}}" err-src="img/clocktower100.png" />
+                <img class="cover_search_results" ng-src="https://catalog.tadl.org/opac/extras/ac/jacket/medium/r/{{result.record_id}}" err-src="img/kcl-placeholder.png" />
             </div>
             <div class="col col-80">
-                <h2><img ng-src="{{result.format_icon}}" err-src="img/clocktower100.png" /> {{result.title}}</h2>
+                <h2><!-- <img ng-src="{{result.format_icon}}" err-src="img/kcl-placeholder.png" />--> {{result.title}}</h2>
                 <p>{{result.author}}</p>
-                <div ng-show="result.availability.length && result.eresource == null">{{result.availability}}</div>
+                <div ng-show="result.availability.length && result.eresource == null">{{result.availability[2]}}</div>
                 <div ng-show="result.call_number"><strong>{{result.call_number}}</strong></div>
                 <div>
                     <button class="button button-positive" ng-click="details(result.record_id)">More Info</button>
