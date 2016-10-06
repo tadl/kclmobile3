@@ -217,12 +217,6 @@ app.controller('SearchCtrl', function($scope, $rootScope, $http, $location, $sta
             timeout: 15000,
             params: search_params
         }).success(function(data) {
-            /*
-            for (index = 0; index < data.results.length; ++index) {
-                if (data.results[index].availability.length) {
-                    data.results[index].availability = data.results[index].availability.toString();
-                }
-            } */
             $scope.page = data.page
             $scope.more_results = (data.more_results == "true");
             $scope.new_results = data.results
