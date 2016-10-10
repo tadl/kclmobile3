@@ -1,28 +1,27 @@
-<div>
+<div class="make_fast">
     <div class="list">
         <h1 class="item item-divider">Hours and Locations</h1>
     </div>	
-    <div class="card" ng-repeat="location in locations">
+    <div class="card">
         <div class="item">
-            <h2 class="location_name">{{location.fullname}}</h2>
+            <h2 class="location_name">Kalkaska County Library</h2>
             <div class="row responsive-sm">
                 <div class="col col-25 center">
-                    <img ng-src="https://www.tadl.org/sites/default/files/libraryphotos/{{location.shortname}}-200x125.jpg" err-src="img/kcl-placeholder.png" class="location_image" />
+                    <img ng-src="https://catalog.kalkaskalibrary.org/images/kcl/kcl-angle.jpg" class="location_image" />
                 </div>
                 <div class="col col-75 center">
-                    <div>{{location.address}}</div>
-                    <div>{{location.citystatezip}}</div>
-                    <div><i class="icon ion-ios7-telephone"></i> <a href="tel:{{location.phone}}">{{location.phone}}</a></div>
-                    <div><i class="icon ion-email"></i> <a href="mailto:{{location.email}}">{{location.email}}</a></div>
+                    <div>247 S Cedar St</div>
+                    <div>Kalkaska, MI 49646</div>
+                    <div><i class="icon ion-ios7-telephone"></i> <a href="tel:{{phone}}">{{phone}}</a></div>
+                    <div><i class="icon ion-email"></i> <a href="mailto:{{email}}">{{email}}</a></div>
                 </div>
             </div>
-
             <div class="row hours-row hours-row-odd">
                 <div class="col">
                     <span class="detail_key">Sunday</span>
                 </div>
                 <div class="col">
-                    <span class="detail_value">{{location.sunday}}</span>
+                    <span class="detail_value">{{sunday}}</span>
                 </div>
             </div>
             <div class="row hours-row hours-row-even">
@@ -30,7 +29,7 @@
                     <span class="detail_key">Monday</span>
                 </div>
                 <div class="col">
-                    <span class="detail_value">{{location.monday}}</span>
+                    <span class="detail_value">{{monday}}</span>
                 </div>
             </div>
             <div class="row hours-row hours-row-odd">
@@ -38,7 +37,7 @@
                     <span class="detail_key">Tuesday</span>
                 </div>
                 <div class="col">
-                    <span class="detail_value">{{location.tuesday}}</span>
+                    <span class="detail_value">{{tuesday}}</span>
                 </div>
             </div>
             <div class="row hours-row hours-row-even">
@@ -46,7 +45,7 @@
                     <span class="detail_key">Wednesday</span>
                 </div>
                 <div class="col">
-                    <span class="detail_value">{{location.wednesday}}</span>
+                    <span class="detail_value">{{wednesday}}</span>
                 </div>
             </div>
             <div class="row hours-row hours-row-odd">
@@ -54,7 +53,7 @@
                     <span class="detail_key">Thursday</span>
                 </div>
                 <div class="col">
-                    <span class="detail_value">{{location.thursday}}</span>
+                    <span class="detail_value">{{thursday}}</span>
                 </div>
             </div>
             <div class="row hours-row hours-row-even">
@@ -62,7 +61,7 @@
                     <span class="detail_key">Friday</span>
                 </div>
                 <div class="col">
-                    <span class="detail_value">{{location.friday}}</span>
+                    <span class="detail_value">{{friday}}</span>
                 </div>
             </div>
             <div class="row hours-row hours-row-odd">
@@ -70,11 +69,9 @@
                     <span class="detail_key">Saturday</span>
                 </div>
                 <div class="col">
-                    <span class="detail_value">{{location.saturday}}</span>
+                    <span class="detail_value">{{saturday}}</span>
                 </div>
             </div>
-
         </div>
-
     </div>
 </div>
