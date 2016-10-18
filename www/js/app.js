@@ -227,7 +227,7 @@ app.controller('SearchCtrl', function($scope, $rootScope, $http, $location, $sta
             } else {
                 $scope.results = $scope.new_results;
                 // uncomment this for android app TODO
-                //cordova.plugins.Keyboard.close();
+                cordova.plugins.Keyboard.close();
                 $scope.page++;
             }
             $rootScope.hide_loading();
