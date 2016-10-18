@@ -415,48 +415,6 @@ app.controller('HoldsCtrl', function($scope, $rootScope, $http, $ionicLoading, $
         });
     }
 
-    $scope.change_pickup = function(hold_id) {
-        var token = localStorage.getItem('token');
-        $scope.changing_hold = hold_id;
-    }
-
-    // this probably needs to be something TODO
-    //$scope.locValue = 23;
-
-    $scope.submit_change = function(hold_id, loc_id, hold_state, hold_num) {
-        var token = localStorage.getItem('token');
-        if (hold_state == 'Active') {
-            var holdstate = 'f';
-        } else {
-            var holdstate = 't';
-        }
-        $rootScope.show_loading();
-        $http({
-            method: 'GET',
-            url: 'https://catalog.kalkaskalibrary.org/main/update_hold_pickup.json',
-            params: {"token": token, "hold_id": hold_id, "new_pickup": loc_id, "hold_state": holdstate},
-            timeout: 15000,
-        }).success(function(data) {
-            $rootScope.hide_loading();
-            if (data.message != "bad login") {
-                $scope.holds[hold_num] = data.message;
-                $scope.changing_hold = undefined;
-            } else {
-                login.login();
-                setTimeout($scope.submit_change(hold_id, loc_id, hold_state, hold_num), 2500);
-            }
-            //location.reload();
-        }).error(function() {
-            $rootScope.hide_loading();
-            popup.alert('Oops', 'An error has occurred, please try again.');
-        });
-
-    }
-
-    $scope.cancel_change = function() {
-        $scope.changing_hold = undefined;
-    }
-
     $scope.details = function(record_id) {
         itemDetail.get(record_id).then(function(data) {
             $scope.item = data;
