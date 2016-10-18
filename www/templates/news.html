@@ -4,7 +4,7 @@
     </div>
     <div class="card" ng-repeat="new in news">
         <div class="item item-text-wrap">
-            <h2 class="title">{{new.title}}</h2>
+            <h2 ng-bind-html="new.title"></h2>
             <div ng-click="$root.openLink('{{new.link}}')" >
                 <img ng-src="{{new.featured_image.guid}}" class="news_image" ng-show="new.featured_image.guid" err-src="img/kcl-placeholder.png" />
             </div>
