@@ -1,0 +1,35 @@
+<div class="modal make_fast">
+    <ion-header-bar class="bar-solid">
+        <h1 class="title" ng-show="node.nodetype != 'Story'">Event Details</h1>
+        <div class="button button-clear" ng-click="closeModal()">
+            <span class="icon ion-close"></span>
+        </div>
+    </ion-header-bar>
+    <ion-content padding="true">
+        <div class="item item-text-wrap">
+            <h2 class="title">{{node.nodetitle}}</h2>
+            <div class="row">
+                <div class="col col-33">
+                    <img ng-show="!node.featured_image.source" ng-src="img/kcl-placeholder.png" class="cover_item_details" />
+                    <img ng-show="node.featured_image.source" ng-src="{{node.featured_image.source}}" err-src="img/kcl-placeholder.png" class="cover_item_details" />
+                </div>
+                <div class="col col-66">
+                    <div ng-show="node.eventdate" class="padbot">
+                        <span class="detail_value">{{node.eventdate}}</span>
+                    </div>
+                    <div ng-show="node.eventtime" class="padbot">
+                        <span class="detail_value">at {{node.eventtime}}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col col-100">
+                    <span class="detail_value item-text-wrap">{{node.body}}</span>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</div>
+
+
+

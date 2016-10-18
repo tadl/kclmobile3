@@ -1,14 +1,15 @@
-<div>
+<div class="make_fast">
     <div class="list">
         <h1 class="item item-divider">Featured News</h1>
-    </div>	
+    </div>
     <div class="card" ng-repeat="new in news">
-        <div class="item">
-            <h2 class="title" ng-bind-html="new.title"></h2>
-            <div ng-click="$root.openLink('http://www.tadl.org/node/{{new.nid}}?mobi_bypass=1')" >
-                <img ng-src="{{new.image}}" class="news_image" ng-show="new.image" err-src="img/kcl-placeholder.png" />
+        <div class="item item-text-wrap">
+            <h2 class="title">{{new.title}}</h2>
+            <div ng-click="$root.openLink('{{new.link}}')" >
+                <img ng-src="{{new.featured_image.guid}}" class="news_image" ng-show="new.featured_image.guid" err-src="img/kcl-placeholder.png" />
             </div>
-            <span>{{new.teasertitle}}</span>
+            <span ng-bind-html="new.excerpt"></span>
         </div>
     </div>
 </div>
+

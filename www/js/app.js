@@ -661,7 +661,7 @@ app.controller('LocationCtrl', function($scope, $rootScope, $http, $ionicLoading
 
 
 // Events Controller
-app.controller('EventsCtrl', function($scope, $rootScope, $http, $ionicLoading, popup, node_details) {
+app.controller('EventsCtrl', function($scope, $rootScope, $http, $ionicLoading, popup, event_details) {
     $scope.get_events = function() {
         $rootScope.show_loading();
         $http({
@@ -669,6 +669,13 @@ app.controller('EventsCtrl', function($scope, $rootScope, $http, $ionicLoading, 
             url: webEvents,
             timeout: 15000,
         }).success(function(data) {
+            jQuery.each(data.events, function() {
+                var d = moment(this.date);
+                this.time = d.format('h:mm a');
+                this.date = d.format('MM/DD/YYYY');
+                sessionStorage.setItem('eventdate' + this.uid, this.date);
+                sessionStorage.setItem('eventtime' + this.uid, this.time);
+            });
             $scope.events = data.events;
             $rootScope.hide_loading();
         }).error(function() {
@@ -676,8 +683,9 @@ app.controller('EventsCtrl', function($scope, $rootScope, $http, $ionicLoading, 
             popup.alert('Oops', 'An error has occurred, please try again.');
         });
     };
-    $scope.node_details = function(record_id) {
-        node_details.show(record_id);
+
+    $scope.event_details = function(record_id) {
+        event_details.show(record_id);
     };
 
     $scope.get_events();
@@ -789,8 +797,11 @@ app.factory('login', function($http, $rootScope, popup) {
                 $rootScope.hide_loading();
                 if (data.message == 'login failed' || data.message == 'failed' ) {
                     localStorage.removeItem('token');
+                    localStorage.removeItem('hash');
+                    localStorage.removeItem('username');
                     $rootScope.logged_in = false;
                     $rootScope.user_basic = {};
+                    popup.alert('Login Failed', 'Your username and/or password are incorrect. Please try again.');
                 } else {
                     localStorage.setItem('token', data.token);
                     localStorage.setItem('card', data.card);
@@ -809,6 +820,50 @@ app.factory('login', function($http, $rootScope, popup) {
         }
     }
 });
+
+
+app.factory('event_details', function($http, $ionicModal, $rootScope, popup) {
+    return {
+        show: function(nid, $scope) {
+            $scope = $scope || $rootScope.$new();
+            $ionicModal.fromTemplateUrl('templates/event_modal.html', function(modal) {
+                $scope.modal = modal;
+                $scope.modal.show();
+            },
+            {
+                scope: $scope,
+                animation: 'slide-in-up'
+            });
+            $scope.openModal = function() {
+                $scope.modal.show();
+            };
+            $scope.closeModal = function() {
+                $scope.modal.hide();
+            };
+            $rootScope.show_loading('Loading&nbsp;details...');
+            $http({
+                method: 'GET',
+                url: webEvent + nid,
+                timeout: 15000,
+            }).success(function(data) {
+                var nodebody = jQuery('<div>' + data.content + '</div>').text();
+                var nodetitle = jQuery('<span>' + data.title + '</span>').text();
+                var eventdate = sessionStorage.getItem('eventdate' + data.ID);
+                var eventtime = sessionStorage.getItem('eventtime' + data.ID);
+                $scope.node = data;
+                $scope.node.body = nodebody;
+                $scope.node.nodetitle = nodetitle;
+                $scope.node.eventdate = eventdate;
+                $scope.node.eventtime = eventtime;
+                $rootScope.hide_loading();
+            }).error(function() {
+                $rootScope.hide_loading();
+                popup.alert('Oops', 'An error has occurred, please try again.');
+            });
+        }
+    }
+});
+
 
 // Node Modal factory
 app.factory('node_details', function($http, $ionicModal, $rootScope, popup) {
