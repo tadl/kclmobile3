@@ -144,12 +144,6 @@ var app = angular.module('egmobile', ['ionic', 'ngFitText'])
         controller: 'NewsCtrl',
     })
 
-    .state('main.featured',{
-        url: 'featured',
-        templateUrl: 'templates/featured.html',
-        controller: 'FeaturedCtrl',
-    })
-
     $urlRouterProvider.otherwise('/home');
 
     // Just put that anywhere, Bill...
@@ -227,7 +221,7 @@ app.controller('SearchCtrl', function($scope, $rootScope, $http, $location, $sta
             } else {
                 $scope.results = $scope.new_results;
                 // uncomment this for android app TODO
-                cordova.plugins.Keyboard.close();
+                //cordova.plugins.Keyboard.close();
                 $scope.page++;
             }
             $rootScope.hide_loading();
@@ -689,53 +683,6 @@ app.controller('EventsCtrl', function($scope, $rootScope, $http, $ionicLoading, 
     };
 
     $scope.get_events();
-});
-
-// Featured Items Controller
-app.controller('FeaturedCtrl',function($scope, $rootScope, $http, $ionicLoading, $ionicScrollDelegate, $ionicModal, itemDetail, popup, hold) {
-
-    $scope.get_featured = function(list_id) {
-        $rootScope.show_loading();
-        $http({
-            method: 'GET',
-            url: 'https://tadl-toolbox.apps.tadl.org/show_list.json?code=' + list_id,
-            timeout: 15000,
-        }).success(function(data) {
-            $scope.featured = data.items;
-            $scope.featured_title = data.list_name;
-            $rootScope.hide_loading();
-            $ionicScrollDelegate.scrollTop();
-        }).error(function() {
-            $rootScope.hide_loading();
-            popup.alert('Oops', 'An error has occurred, please try again.');
-        });
-    };
-
-    $scope.clear_featured = function() {
-        $scope.featured = undefined;
-        $scope.featured_title = undefined;
-    }
-
-    $scope.details = function(record_id) {
-        itemDetail.get(record_id).then(function(data) {
-            $scope.item = data;
-            $ionicModal.fromTemplateUrl('templates/item_modal.html', {
-                scope: $scope
-            }).then(function(modal) {
-                $scope.modal = modal;
-                modal.show();
-                $scope.closeModal = function() {
-                    modal.hide();
-                }
-            });
-        });
-    };
-
-    $scope.place_hold = function(record_id) {
-        hold.place(record_id);
-    };
-
-    // $scope.get_featured();
 });
 
 // News Controller
