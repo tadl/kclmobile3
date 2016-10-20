@@ -21,6 +21,7 @@
     <gap:platform name="android" />
 
     <content src="index.html" />
+    <access origin="*" />
 
     <preference name="webviewbounce" value="false"/>
     <preference name="UIWebViewBounce" value="true"/>
@@ -31,15 +32,20 @@
     <preference name="phonegap-version" value="cli-6.3.0"/>
     <preference name="orientation" value="portrait"/>
     <preference name="target-device" value="universal"/>
-    <preference name="fullscreen" value="false"/>
+    <preference name="fullscreen" value="true"/>
     <preference name="prerendered-icon" value="true"/>
     <preference name="stay-in-webview" value="false"/>
     <preference name="ios-statusbarstyle" value="black-opaque"/>
-    <preference name="detect-data-types" value="true" />
-    <preference name="exit-on-suspend" value="true" />
-    <preference name="show-splash-screen-spinner" value="false" />
-    <preference name="auto-hide-splash-screen" value="true" />
-    <preference name="disable-cursor" value="false" />
+    <preference name="detect-data-types" value="true"/>
+    <preference name="exit-on-suspend" value="true"/>
+    <preference name="disable-cursor" value="false"/>
+    <preference name="AutoHideSplashScreen" value="true"/>
+    <preference name="SplashScreenDelay" value="0"/>
+    <preference name="FadeSplashScreen" value="true"/>
+    <preference name="FadeSplashScreenDuration" value="0"/>
+    <preference name="ShowSplashScreenSpinner" value="false"/>
+    <preference name="SplashMaintainAspectRatio" value="true"/>
+
 
     <feature name="StatusBar">
         <param name="ios-package" value="CDVStatusBar" onload="true"/>
@@ -49,13 +55,9 @@
         <string>3001</string>
     </gap:config-file>
 
-    <gap:plugin name="com.ionic.keyboard" />
-    <gap:plugin name="org.apache.cordova.inappbrowser" />
-    <gap:plugin name="com.indigoway.cordova.whitelist.whitelistplugin" source="pgb"/>
-
-    <allow-navigation href="*" />
-    <allow-intent href="*" />
-    <access origin="*" />
+    <gap:plugin name="cordova-plugin-splashscreen" source="npm"/>
+    <gap:plugin name="cordova-plugin-inappbrowser" source="npm"/>
+    <gap:plugin name="ionic-plugin-keyboard" source="npm"/>
 
     <!-- ICONS -->
 
@@ -85,7 +87,6 @@
     <icon src="res/icons/android/mdpi.png" gap:platform="android" gap:qualifier="mdpi" />
     <icon src="res/icons/android/hdpi.png" gap:platform="android" gap:qualifier="hdpi" />
     <icon src="res/icons/android/xhdpi.png" gap:platform="android" gap:qualifier="xhdpi" />
-
 
     <!-- SPLASH -->
 
