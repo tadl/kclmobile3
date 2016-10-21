@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <widget
     id="org.tadl.kcl"
-    version="3.0.02"
-    versionCode="3002"
+    version="3.0.03"
+    versionCode="3003"
     xmlns="http://www.w3.org/ns/widgets"
     xmlns:cdv="http://cordova.apache.org/ns/1.0"
     xmlns:gap="http://phonegap.com/ns/1.0" >
@@ -52,7 +52,7 @@
     </feature>
 
     <gap:config-file platform="ios" parent="CFBundleVersion">
-        <string>3002</string>
+        <string>3003</string>
     </gap:config-file>
 
     <gap:plugin name="cordova-plugin-splashscreen" source="npm"/>
@@ -60,6 +60,8 @@
     <gap:plugin name="ionic-plugin-keyboard" source="npm"/>
 
     <!-- ICONS -->
+
+    <icon src="res/icons/Icon.png"/>
 
     <!-- iPhone / iPod Touch -->
     <icon src="res/icons/ios/Icon.png" gap:platform="ios" width="57" height="57" />
@@ -91,7 +93,6 @@
     <!-- SPLASH -->
 
     <!-- Default -->
-    <gap:splash src="res/splash/default.png" />
 
     <!-- iPhone and iPod touch -->
     <gap:splash src="res/splash/ios/Default.png" gap:platform="ios" width="320" height="480" />
